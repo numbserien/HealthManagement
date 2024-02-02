@@ -2,9 +2,11 @@ package com.zq.demo.pojo.sys;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 
 @Data
-public class Result<T> {
+public class Result<T> implements Serializable {
 
     private Integer code;
 
