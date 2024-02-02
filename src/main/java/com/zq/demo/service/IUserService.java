@@ -1,11 +1,11 @@
 package com.zq.demo.service;
 
-import com.zq.demo.pojo.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zq.demo.pojo.User;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author GL
@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 
+    String getUserAuthorityInfo(Integer userId);
 }
