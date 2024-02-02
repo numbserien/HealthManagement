@@ -13,13 +13,27 @@ spring:
     username: root
     password: 123456
   main:
-    #    springboot ��ӡ��ͼ��
+    #    springboot 打印的图标
     banner-mode: off
-  #�����ļ��ϴ����ļ���С����
+  #配置文件上传的文件大小限制
   servlet:
     multipart:
       max-request-size: 500MB
       max-file-size: 300MB
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
+      timeout: 60s
+      #      password:
+      # Lettuce连接池配置
+      lettuce:
+        pool:
+          max-active: 10  # 允许最大连接数，默认8（负值表示没有限制），推荐值：大于cpu * 2，通常为(cpu * 2) + 2
+          max-idle: 8     # 最大空闲连接数，默认8，推荐值：cpu * 2
+          min-idle: 0     # 最小空闲连接数，默认0
+          max-wait: 5s    # 连接用完时，新的请求等待时间(s秒、ms毫秒)，超过该时间抛出异常，默认-1（负值表示没有限制）
 server:
   port: 8081
   servlet:
@@ -29,21 +43,21 @@ server:
       enabled: true
 mybatis-plus:
   configuration:
-    #    ��ӡ���ݿ������־
+    #    打印数据库操作日志
     #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    mapUnderscoreToCamelCase: false # �ر��շ�����ת����
+    mapUnderscoreToCamelCase: false # 关闭驼峰命名转换法
   global-config:
-    #    mybatisPlus ��ӡ��ͼ��
+    #    mybatisPlus 打印的图标
     banner: false
 
-# tomcat ��ӡ��־����
+# tomcat 打印日志级别
 logging:
   level:
     root: warn
 
-# ����������
+# 个人配置类
 zq:
   jwt:
     header: Authorization
-    expire: 604800 # 7�죬sΪ��λ
+    expire: 604800 # 7天，s为单位
     secret: abcdefghabcdefghabcdefghabcdefgh
