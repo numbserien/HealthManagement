@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -20,7 +19,6 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 public class Campus implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "c_id", type = IdType.ASSIGN_ID)

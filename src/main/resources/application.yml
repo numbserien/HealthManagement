@@ -1,3 +1,9 @@
+# 个人配置类
+zq:
+  jwt:
+    expire: 604800
+    header: "Authorization"
+    secret: "abcdefghabcdefghabcdefghabcdefgh"
 spring:
   jackson:
     date-format: yyyy-MM-dd hh:mm:ss
@@ -54,10 +60,3 @@ mybatis-plus:
 logging:
   level:
     root: warn
-
-# 个人配置类
-zq:
-  jwt:
-    header: Authorization
-    expire: 604800 # 7天，s为单位
-    secret: abcdefghabcdefghabcdefghabcdefgh

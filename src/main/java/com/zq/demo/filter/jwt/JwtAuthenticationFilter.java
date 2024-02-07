@@ -6,13 +6,12 @@ import com.zq.demo.service.impl.UserServiceImpl;
 import com.zq.demo.util.JwtUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,17 +21,14 @@ import java.io.IOException;
 /**
  * 验证是否正确或过期
  */
-@Component
 public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 
-    @Autowired
-    JwtUtils jwtUtils;
-
-    @Autowired
+    @Resource
     UserDetailServiceImpl userDetailService;
-
-    @Autowired
+    @Resource
     UserServiceImpl userService;
+    @Resource
+    JwtUtils jwtUtils;
 
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);

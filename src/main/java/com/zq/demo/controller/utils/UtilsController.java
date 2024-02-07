@@ -6,6 +6,7 @@ import cn.hutool.core.map.MapUtil;
 import com.google.code.kaptcha.Producer;
 import com.zq.demo.pojo.sys.Result;
 import com.zq.demo.util.Const;
+import com.zq.demo.util.JwtUtils;
 import com.zq.demo.util.RedisUtils02;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,8 @@ import java.io.IOException;
 public class UtilsController {
     @Autowired
     Producer producer;
+    @Autowired
+    JwtUtils jwtUtils;
 
     @GetMapping("/captcha")
     public Result Captcha() throws IOException {

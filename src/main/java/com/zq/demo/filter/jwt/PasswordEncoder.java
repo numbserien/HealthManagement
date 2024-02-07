@@ -22,7 +22,7 @@ public class PasswordEncoder extends BCryptPasswordEncoder {
         } catch (Exception e) {
             throw new BadCredentialsException(e.getMessage());
         }
-        if (encodedPassword != null && encodedPassword.length() != 0) {
+        if (encodedPassword != null && !encodedPassword.isEmpty()) {
 //            在后端再使用BCrypt加密
             return BCrypt.checkpw(pwd, encodedPassword);
         } else {

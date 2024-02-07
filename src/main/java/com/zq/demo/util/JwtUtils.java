@@ -13,8 +13,7 @@ import java.util.Date;
 @Component
 @ConfigurationProperties(prefix = "zq.jwt")
 public class JwtUtils {
-
-    private long expire;
+    private Long expire;
     private String secret;
     private String header;
 
@@ -49,5 +48,4 @@ public class JwtUtils {
     public boolean isTokenExpired(Claims claims) {
         return claims.getExpiration().before(new Date());
     }
-
 }

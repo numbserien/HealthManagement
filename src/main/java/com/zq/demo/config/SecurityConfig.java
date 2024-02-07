@@ -41,10 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     JWTLogoutSuccessHandler jwtLogoutSuccessHandler;
 
-
+    @Bean
     JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {
-        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager());
-        return jwtAuthenticationFilter;
+        return new JwtAuthenticationFilter(authenticationManager());
     }
 
     @Bean
