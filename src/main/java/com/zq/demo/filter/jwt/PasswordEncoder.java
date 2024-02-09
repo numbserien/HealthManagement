@@ -1,5 +1,7 @@
 package com.zq.demo.filter.jwt;
 
+import com.zq.demo.util.Const;
+import com.zq.demo.util.RSAUtils;
 import lombok.NoArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -17,8 +19,7 @@ public class PasswordEncoder extends BCryptPasswordEncoder {
         String pwd = rawPassword.toString();
         // 进行rsa解密
         try {
-//            pwd = RsaUtils.decryptByPrivateKey(RsaProperties.privateKey, pwd);
-            // TODO 对前端的密码进行解密操作，可能并不需要
+            pwd = RSAUtils.decryptByPrivateKey(Const.RsaPrivateKey, pwd);
         } catch (Exception e) {
             throw new BadCredentialsException(e.getMessage());
         }

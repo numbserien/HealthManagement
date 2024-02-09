@@ -1,6 +1,7 @@
 package com.zq.demo.filter.jwt;
 
 import cn.hutool.core.util.StrUtil;
+import com.zq.demo.filter.UsernamePasswordAuthentication.UserDetailServiceImpl;
 import com.zq.demo.pojo.User;
 import com.zq.demo.service.impl.UserServiceImpl;
 import com.zq.demo.util.JwtUtils;
@@ -60,7 +61,7 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 
 
         // 构建UsernamePasswordAuthenticationToken,这里密码为null，是因为提供了正确的JWT,实现自动登录
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, userDetailService.getUserAuthority(sysUser.getU_id()));
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, userDetailService.getUserAuthority(sysUser.getId()));
         SecurityContextHolder.getContext().setAuthentication(token);
 
         chain.doFilter(request, response);

@@ -1,5 +1,6 @@
 package com.zq.demo.config;
 
+import com.zq.demo.filter.UsernamePasswordAuthentication.UserDetailServiceImpl;
 import com.zq.demo.filter.captcha.CaptchaFilter;
 import com.zq.demo.filter.jwt.*;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +21,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    //    白名单不用登录访问的地方
     private static final String[] URL_WHITELIST = {
             "/login",
             "/logout",
+            "/user/register",
             "/captcha",
             "/favicon.ico"
     };
@@ -56,6 +59,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 // 登录配置
                 .formLogin()
+                .loginProcessingUrl("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
                 .successHandler(loginSuccessHandler)
                 .failureHandler(loginFailureHandler)
 
@@ -72,6 +78,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(URL_WHITELIST).permitAll()
                 .anyRequest().authenticated()
+//                TODO 角色控制管理权限
+//                .anyRequest().access()
                 // 异常处理器
                 .and()
                 .exceptionHandling()

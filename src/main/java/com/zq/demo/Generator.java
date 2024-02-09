@@ -42,6 +42,6 @@
 //        strategy.setLogicDeleteFieldName("deleted");
 //        strategy.setVersionFieldName("version");
 //        autoGenerator.setStrategy(strategy);
-////        autoGenerator.execute();
+//        autoGenerator.execute();
 //    }
 //}

@@ -1,4 +1,4 @@
-package com.zq.demo.filter.jwt;
+package com.zq.demo.filter.UsernamePasswordAuthentication;
 
 import cn.hutool.core.lang.Assert;
 import com.alibaba.druid.support.logging.Log;
@@ -15,19 +15,19 @@ public class AccountUser implements UserDetails {
     private static final Log logger = LogFactory.getLog(User.class);
     private final String username;
     private final Collection<? extends GrantedAuthority> authorities;
-    private final boolean accountNonExpired;
-    private final boolean accountNonLocked;
-    private final boolean credentialsNonExpired;
+    private final boolean accountNonExpired;  // 是否没过期
+    private final boolean accountNonLocked;   // 是否没被锁定
+    private final boolean credentialsNonExpired; //
+    private final String password;
     private final boolean enabled;
-    private Integer userId;
-    private String password;
+    private Long userId;
 
-    public AccountUser(Integer userId, String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        this(userId, username, password, true, true, true, true, authorities);
+    public AccountUser(Long userId, String username, String password, boolean enabled, Collection<? extends GrantedAuthority> authorities) {
+        this(userId, username, password, enabled, true, true, true, authorities);
     }
 
-    public AccountUser(Integer userId, String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
-        Assert.isTrue(username != null && !"".equals(username) && password != null, "Cannot pass null or empty values to constructor");
+    public AccountUser(Long userId, String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+        Assert.isTrue(username != null && !username.isEmpty() && password != null, "Cannot pass null or empty values to constructor");
         this.userId = userId;
         this.username = username;
         this.password = password;

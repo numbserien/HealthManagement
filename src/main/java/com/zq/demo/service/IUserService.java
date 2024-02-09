@@ -9,9 +9,8 @@ import com.zq.demo.pojo.User;
  * </p>
  *
  * @author GL
- * @since 2024-01-31
+ * @since 2024-02-09
  */
 public interface IUserService extends IService<User> {
 
-    String getUserAuthorityInfo(Integer userId);
 }

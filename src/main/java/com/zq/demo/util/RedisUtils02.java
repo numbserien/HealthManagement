@@ -1,6 +1,7 @@
 package com.zq.demo.util;
 
 import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class RedisUtils02 {
+    @Getter
     private static RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
@@ -35,10 +37,6 @@ public class RedisUtils02 {
         //hash的value序列化方式采用jackson
         redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
         redisTemplate.afterPropertiesSet();
-    }
-
-    public static RedisTemplate<String, Object> getRedisTemplate() {
-        return redisTemplate;
     }
 
     // =============================common============================

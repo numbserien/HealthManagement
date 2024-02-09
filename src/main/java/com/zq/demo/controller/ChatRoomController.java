@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author GL
- * @since 2024-01-31
+ * @since 2024-02-09
  */
 @RestController
 @RequestMapping("/chatRoom")
