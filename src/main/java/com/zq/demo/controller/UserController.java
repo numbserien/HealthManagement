@@ -41,7 +41,7 @@ public class UserController {
             if (sysUser1 != null) {
                 return Result.failure("当前账号已经存在，请更换账号");
             }
-            //REA解密
+            //RSA解密
             String pwd = RSAUtils.decryptByPrivate(sysUser.getPassword(), Const.RsaPrivateKey);
             //SpringSecurity 密码编码
             String encodePwd = passwordEncoder.encode(pwd);
