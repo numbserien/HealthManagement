@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/login",
             "/logout",
             "/user/register",
-            "/captcha",
+            "/utils/captcha",
             "/favicon.ico"
     };
     @Autowired
