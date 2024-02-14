@@ -16,7 +16,9 @@ public class PasswordEncoder extends BCryptPasswordEncoder {
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
         // 接收到的前端的密码
-        String pwd = rawPassword.toString();
+//        TODO 获取前端的加密后的密码会将 + => 空格
+//        String pwd = rawPassword.toString();
+        String pwd = rawPassword.toString().replace(" ", "+");
         // 进行rsa解密
         try {
             pwd = RSAUtils.decryptByPrivateKey(Const.RsaPrivateKey, pwd);
@@ -29,5 +31,16 @@ public class PasswordEncoder extends BCryptPasswordEncoder {
         } else {
             return false;
         }
+    }
+
+    /**
+     * 注册的时候使用此方法对密码加密
+     *
+     * @param rawPassword
+     * @return
+     */
+    @Override
+    public String encode(CharSequence rawPassword) {
+        return super.encode(rawPassword);
     }
 }
