@@ -1,8 +1,14 @@
 package com.zq.demo.config;
 
+import com.zq.demo.filter.Sequrity.LoginFailureHandler;
+import com.zq.demo.filter.Sequrity.LoginSuccessHandler;
+import com.zq.demo.filter.Sequrity.PasswordEncoder;
 import com.zq.demo.filter.UsernamePasswordAuthentication.UserDetailServiceImpl;
 import com.zq.demo.filter.captcha.CaptchaFilter;
-import com.zq.demo.filter.jwt.*;
+import com.zq.demo.filter.jwt.JWTLogoutSuccessHandler;
+import com.zq.demo.filter.jwt.JwtAccessDeniedHandler;
+import com.zq.demo.filter.jwt.JwtAuthenticationEntryPoint;
+import com.zq.demo.filter.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -77,9 +83,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(URL_WHITELIST).permitAll()
-                .anyRequest().authenticated()
-//                TODO 角色控制管理权限
-//                .anyRequest().access()
+//                TODO 角色控制管理权限 SPEL表达式
+                .anyRequest().access("@rbacService.hasPermission(request,authentication)")
                 // 异常处理器
                 .and()
                 .exceptionHandling()
