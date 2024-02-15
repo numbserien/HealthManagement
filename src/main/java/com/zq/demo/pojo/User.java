@@ -2,11 +2,11 @@ package com.zq.demo.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -73,7 +73,8 @@ public class User implements Serializable {
     /**
      * 创建时间
      */
-    private LocalDateTime c_time;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Data c_time;
 
     /**
      * 性别
