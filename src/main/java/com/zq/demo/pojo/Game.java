@@ -1,16 +1,16 @@
 package com.zq.demo.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.Version;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author GL
@@ -38,10 +38,10 @@ public class Game implements Serializable {
     private Integer g_type;
 
     private Integer g_level;
-
-    private LocalDateTime g_start_time;
-
-    private LocalDateTime g_end_time;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Data g_start_time;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Data g_end_time;
 
     private Integer g_limit_people;
 

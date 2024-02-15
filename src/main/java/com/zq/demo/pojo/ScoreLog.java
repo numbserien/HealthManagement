@@ -1,16 +1,18 @@
 package com.zq.demo.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.Version;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author GL
@@ -18,14 +20,15 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@TableName("ScoreLog")
 public class ScoreLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "sl_id", type = IdType.ASSIGN_ID)
     private Integer sl_id;
-
-    private LocalDateTime sl_time;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date sl_time;
 
     private Integer sl_u_id;
 

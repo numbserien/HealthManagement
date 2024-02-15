@@ -1,16 +1,18 @@
 package com.zq.demo.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.Version;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author GL
@@ -18,6 +20,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@TableName("ChatContent")
 public class ChatContent implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,8 +33,8 @@ public class ChatContent implements Serializable {
     private Integer cc_u_id;
 
     private Integer cc_cr_id;
-
-    private LocalDateTime cc_time;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date cc_time;
 
     private Integer cc_reply_id;
 

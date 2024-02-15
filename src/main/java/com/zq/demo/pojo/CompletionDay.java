@@ -1,14 +1,15 @@
 package com.zq.demo.pojo;
 
-import com.baomidou.mybatisplus.annotation.Version;
-import java.time.LocalTime;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+import java.time.LocalTime;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author GL
@@ -16,6 +17,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@TableName("CompletionDay")
 public class CompletionDay implements Serializable {
 
     private static final long serialVersionUID = 1L;
