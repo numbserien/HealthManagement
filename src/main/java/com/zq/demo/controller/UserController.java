@@ -1,7 +1,7 @@
 package com.zq.demo.controller;
 
 
-import com.zq.demo.filter.jwt.PasswordEncoder;
+import com.zq.demo.filter.Sequrity.PasswordEncoder;
 import com.zq.demo.pojo.User;
 import com.zq.demo.pojo.sys.Result;
 import com.zq.demo.service.impl.UserServiceImpl;

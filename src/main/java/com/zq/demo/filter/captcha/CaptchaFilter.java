@@ -2,7 +2,7 @@ package com.zq.demo.filter.captcha;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.zq.demo.exception.CaptchaException;
-import com.zq.demo.filter.jwt.LoginFailureHandler;
+import com.zq.demo.filter.Sequrity.LoginFailureHandler;
 import com.zq.demo.util.Const;
 import com.zq.demo.util.RedisUtils02;
 import org.springframework.beans.factory.annotation.Autowired;
