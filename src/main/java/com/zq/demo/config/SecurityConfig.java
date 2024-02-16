@@ -5,10 +5,10 @@ import com.zq.demo.filter.Sequrity.LoginSuccessHandler;
 import com.zq.demo.filter.Sequrity.PasswordEncoder;
 import com.zq.demo.filter.UsernamePasswordAuthentication.UserDetailServiceImpl;
 import com.zq.demo.filter.captcha.CaptchaFilter;
-import com.zq.demo.filter.jwt.JWTLogoutSuccessHandler;
 import com.zq.demo.filter.jwt.JwtAccessDeniedHandler;
 import com.zq.demo.filter.jwt.JwtAuthenticationEntryPoint;
 import com.zq.demo.filter.jwt.JwtAuthenticationFilter;
+import com.zq.demo.filter.jwt.JwtLogoutSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailServiceImpl userDetailService;
     @Autowired
-    JWTLogoutSuccessHandler jwtLogoutSuccessHandler;
+    JwtLogoutSuccessHandler jwtLogoutSuccessHandler;
 
     @Bean
     JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {
@@ -86,10 +86,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(URL_WHITELIST).permitAll()
                 // 角色控制管理权限 SpEL表达式
                 .anyRequest().access("@rbacService.hasPermission(request,authentication)")
-                .antMatchers("/system/*").access("hasRole('admin') or hasAuthority('ROLE_admin')")
-                // 记住我 TODO 前端提交 布尔值属性 -> rememberMe
-                .and()
-                .rememberMe()
+//                TODO 角色权限管理器
+//                .antMatchers("/system/*").access("hasRole('admin') or hasAuthority('ROLE_admin')")
+                // 记住我 TODO 前端提交 布尔值属性 -> rememberMe ps: 考虑是否需要已经用jwt作为权限控制了
+//                .and()
+//                .rememberMe()
                 // 异常处理器
                 .and()
                 .exceptionHandling()

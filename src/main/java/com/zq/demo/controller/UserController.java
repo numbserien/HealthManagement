@@ -37,7 +37,7 @@ public class UserController {
         lock.lock();
         try {
             //查询当前账号是否存在
-            User sysUser1 = userService.getByUsername(sysUser.getName());
+            User sysUser1 = userService.getByUsernameToAuth(sysUser.getName());
             if (sysUser1 != null) {
                 return Result.failure("当前账号已经存在，请更换账号");
             }

@@ -24,7 +24,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements IUser
     private UserDao userDao;
 
     //    根据用户名返回用户信息(id,username,password,status)
-    public User getByUsername(String username) {
+    public User getByUsernameToAuth(String username) {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(username != null, User::getUsername, username)
                 .select(User::getId, User::getUsername, User::getPassword, User::getStatus);

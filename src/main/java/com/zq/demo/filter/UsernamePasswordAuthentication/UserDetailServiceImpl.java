@@ -29,7 +29,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         //用户基础数据加载
-        User sysUser = sysUserService.getByUsername(username);
+        User sysUser = sysUserService.getByUsernameToAuth(username);
         if (sysUser == null) {
             throw new UsernameNotFoundException("用户名或密码错误");
         }

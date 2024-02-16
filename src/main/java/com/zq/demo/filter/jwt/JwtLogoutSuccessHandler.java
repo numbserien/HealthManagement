@@ -19,7 +19,7 @@ import java.nio.charset.StandardCharsets;
  * 登出处理器LogoutSuccessHandler
  */
 @Component
-public class JWTLogoutSuccessHandler implements LogoutSuccessHandler {
+public class JwtLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Resource
     JwtUtils jwtUtils;
