@@ -48,4 +48,10 @@ public class UtilsController {
                         .build()
         );
     }
+
+    @GetMapping("/test")
+    public Result test() {
+        return Result.success("测试权限管理情况！");
+    }
+
 }
