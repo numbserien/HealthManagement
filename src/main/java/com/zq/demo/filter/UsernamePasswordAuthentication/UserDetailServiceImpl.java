@@ -33,10 +33,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (sysUser == null) {
             throw new UsernameNotFoundException("用户名或密码错误");
         }
-
-
         return new AccountUser(sysUser.getId(), sysUser.getUsername(), sysUser.getPassword(), sysUser.getStatus().equals("1"), getUserAuthority(sysUser.getId()));
-
     }
 
     /**
@@ -48,11 +45,12 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
         //用户的角色列表
         List<String> roles = userRolesService.getRolesListByUserId(userId);
+        List<Long> roleIds = userRolesService.getRolesIdListByUserId(userId);
         //根据角色列表加载用户权限
-        List<String> authorities = rolesPermissionsService.getPermissionListByRoleList(roles);
+        List<String> authorities = rolesPermissionsService.getPermissionListByRoleList(roleIds);
         //角色是一种特殊的权限
         roles = roles.stream().map(rc -> "ROLE_" + rc).collect(Collectors.toList());
         authorities.addAll(roles);
-        return AuthorityUtils.commaSeparatedStringToAuthorityList(String.join(",", roles));
+        return AuthorityUtils.commaSeparatedStringToAuthorityList(String.join(",", authorities));
     }
 }
