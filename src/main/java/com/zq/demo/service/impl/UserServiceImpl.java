@@ -23,7 +23,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements IUser
     @Resource
     private UserDao userDao;
 
-    //    TODO 根据用户名返回用户信息(id,username,password)
+    //    根据用户名返回用户信息(id,username,password,status)
     public User getByUsername(String username) {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(username != null, User::getUsername, username)
