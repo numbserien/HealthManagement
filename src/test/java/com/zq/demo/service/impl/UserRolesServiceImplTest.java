@@ -1,31 +1,33 @@
 package com.zq.demo.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.zq.demo.dao.RolesDao;
-import com.zq.demo.dao.UserDao;
-import com.zq.demo.dao.UserRolesDao;
-import com.zq.demo.pojo.UserRoles;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.authority.AuthorityUtils;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @SpringBootTest
 class UserRolesServiceImplTest {
     @Resource
-    private UserRolesDao userRolesDao;
-
+    UserRolesServiceImpl userRolesService;
     @Resource
-    private UserDao userDao;
-    @Resource
-    private RolesDao rolesDao;
+    RolesPermissionsServiceImpl rolesPermissionsService;
 
     @Test
     void getRolesIdListByUserId() {
-        LambdaQueryWrapper<UserRoles> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.select(UserRoles::getRoleId)
-                .eq(UserRoles::getUserId, 2);
-        System.out.println(this.userRolesDao.selectObjs(queryWrapper));
+        //用户的角色列表
+        List<String> roles = userRolesService.getRolesListByUserId(2L);
+        List<Long> roleIds = userRolesService.getRolesIdListByUserId(2L);
+        //根据角色列表加载用户权限
+        List<String> authorities = rolesPermissionsService.getPermissionListByRoleList(roleIds);
+        System.out.println(authorities);
+        //角色是一种特殊的权限
+        roles = roles.stream().map(rc -> "ROLE_" + rc).collect(Collectors.toList());
+        authorities.addAll(roles);
+        System.out.println(roleIds);
+        System.out.println(AuthorityUtils.commaSeparatedStringToAuthorityList(String.join(",", authorities)));
     }
 
     @Test
