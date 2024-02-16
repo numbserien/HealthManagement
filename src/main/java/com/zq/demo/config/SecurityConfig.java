@@ -72,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(loginFailureHandler)
 
                 .and()
+                // 退出登录
                 .logout()
                 .logoutSuccessHandler(jwtLogoutSuccessHandler)
 
@@ -83,8 +84,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(URL_WHITELIST).permitAll()
-//                TODO 角色控制管理权限 SPEL表达式
+                // 角色控制管理权限 SpEL表达式
                 .anyRequest().access("@rbacService.hasPermission(request,authentication)")
+                .antMatchers("/system/*").access("hasRole('admin') or hasAuthority('ROLE_admin')")
+                // 记住我 TODO 前端提交 布尔值属性 -> rememberMe
+                .and()
+                .rememberMe()
                 // 异常处理器
                 .and()
                 .exceptionHandling()
