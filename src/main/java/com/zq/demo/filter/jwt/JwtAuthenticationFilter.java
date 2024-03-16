@@ -2,8 +2,8 @@ package com.zq.demo.filter.jwt;
 
 import cn.hutool.core.util.StrUtil;
 import com.zq.demo.filter.UsernamePasswordAuthentication.UserDetailServiceImpl;
-import com.zq.demo.pojo.User;
-import com.zq.demo.service.impl.UserServiceImpl;
+import com.zq.demo.pojo.user.User;
+import com.zq.demo.service.impl.user.UserServiceImpl;
 import com.zq.demo.util.JwtUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;

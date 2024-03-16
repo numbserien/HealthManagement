@@ -1,5 +1,7 @@
 package com.zq.demo.service.impl;
 
+import com.zq.demo.service.impl.user.RolesPermissionsServiceImpl;
+import com.zq.demo.service.impl.user.UserRolesServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.authority.AuthorityUtils;

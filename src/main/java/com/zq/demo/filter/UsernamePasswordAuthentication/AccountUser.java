@@ -3,7 +3,7 @@ package com.zq.demo.filter.UsernamePasswordAuthentication;
 import cn.hutool.core.lang.Assert;
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
-import com.zq.demo.pojo.User;
+import com.zq.demo.pojo.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

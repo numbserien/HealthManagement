@@ -1,9 +1,9 @@
 package com.zq.demo.filter.UsernamePasswordAuthentication;
 
-import com.zq.demo.pojo.User;
-import com.zq.demo.service.impl.RolesPermissionsServiceImpl;
-import com.zq.demo.service.impl.UserRolesServiceImpl;
-import com.zq.demo.service.impl.UserServiceImpl;
+import com.zq.demo.pojo.user.User;
+import com.zq.demo.service.impl.user.RolesPermissionsServiceImpl;
+import com.zq.demo.service.impl.user.UserRolesServiceImpl;
+import com.zq.demo.service.impl.user.UserServiceImpl;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
