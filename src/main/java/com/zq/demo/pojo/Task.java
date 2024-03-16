@@ -36,8 +36,6 @@ public class Task implements Serializable {
 
     private Integer t_combo_day;
 
-    private Integer t_next_job;
-
     private Integer t_is_public;
 
     private Integer t_status;

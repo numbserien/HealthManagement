@@ -22,6 +22,12 @@ public class CompletionDay implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private Integer cd_day;
+
+    private Integer cd_t_id;
+
+    private Integer cd_pc_id;
+
     private Integer cd_is_place;
 
     private String cd_site;
@@ -33,10 +39,5 @@ public class CompletionDay implements Serializable {
     private LocalTime cd_start_time;
 
     private LocalTime cd_end_time;
-
-    private Integer cd_t_id;
-
-    private Integer cd_day;
-
 
 }

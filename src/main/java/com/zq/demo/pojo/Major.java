@@ -30,7 +30,5 @@ public class Major implements Serializable {
 
     private Integer m_m_id;
 
-    private Integer m_c_id;
-
 
 }
