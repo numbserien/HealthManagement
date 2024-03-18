@@ -2,7 +2,7 @@ package com.zq.demo.service.impl;
 
 import com.zq.demo.pojo.Stadium;
 import com.zq.demo.dao.StadiumDao;
-import com.zq.demo.service.service.IStadiumService;
+import com.zq.demo.service.interfaces.IStadiumService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

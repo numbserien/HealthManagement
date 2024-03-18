@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zq.demo.dao.user.UserDao;
 import com.zq.demo.pojo.user.User;
-import com.zq.demo.service.service.user.IUserService;
+import com.zq.demo.service.interfaces.user.IUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

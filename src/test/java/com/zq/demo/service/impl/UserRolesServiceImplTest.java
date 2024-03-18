@@ -20,8 +20,8 @@ class UserRolesServiceImplTest {
     @Test
     void getRolesIdListByUserId() {
         //用户的角色列表
-        List<String> roles = userRolesService.getRolesListByUserId(2L);
-        List<Long> roleIds = userRolesService.getRolesIdListByUserId(2L);
+        List<String> roles = userRolesService.getRolesListByUserId(2);
+        List<Long> roleIds = userRolesService.getRolesIdListByUserId(2);
         //根据角色列表加载用户权限
         List<String> authorities = rolesPermissionsService.getPermissionListByRoleList(roleIds);
         System.out.println(authorities);

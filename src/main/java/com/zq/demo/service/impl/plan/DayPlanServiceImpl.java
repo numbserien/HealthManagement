@@ -2,7 +2,7 @@ package com.zq.demo.service.impl.plan;
 
 import com.zq.demo.pojo.plan.DayPlan;
 import com.zq.demo.dao.plan.DayPlanDao;
-import com.zq.demo.service.service.plan.IDayPlanService;
+import com.zq.demo.service.interfaces.plan.IDayPlanService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

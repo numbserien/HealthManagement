@@ -1,4 +1,4 @@
-package com.zq.demo.service.service.plan;
+package com.zq.demo.service.interfaces.plan;
 
 import com.zq.demo.pojo.plan.PlanContent;
 import com.baomidou.mybatisplus.extension.service.IService;

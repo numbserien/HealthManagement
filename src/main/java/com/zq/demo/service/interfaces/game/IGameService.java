@@ -1,6 +1,6 @@
-package com.zq.demo.service.service.user;
+package com.zq.demo.service.interfaces.game;
 
-import com.zq.demo.pojo.user.Roles;
+import com.zq.demo.pojo.game.Game;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author GL
  * @since 2024-02-09
  */
-public interface IRolesService extends IService<Roles> {
+public interface IGameService extends IService<Game> {
 
 }

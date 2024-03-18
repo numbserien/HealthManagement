@@ -1,4 +1,4 @@
-package com.zq.demo.service.service.community;
+package com.zq.demo.service.interfaces.community;
 
 import com.zq.demo.pojo.community.ChatContent;
 import com.baomidou.mybatisplus.extension.service.IService;

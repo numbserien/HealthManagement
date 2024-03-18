@@ -1,4 +1,4 @@
-package com.zq.demo.service.service.game;
+package com.zq.demo.service.interfaces.game;
 
 import com.zq.demo.pojo.game.GameResult;
 import com.baomidou.mybatisplus.extension.service.IService;

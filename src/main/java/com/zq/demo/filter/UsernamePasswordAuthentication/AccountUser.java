@@ -20,15 +20,14 @@ public class AccountUser implements UserDetails {
     private final boolean credentialsNonExpired; //
     private final String password;
     private final boolean enabled;
-    private Long userId;
 
-    public AccountUser(Long userId, String username, String password, boolean enabled, Collection<? extends GrantedAuthority> authorities) {
-        this(userId, username, password, enabled, true, true, true, authorities);
+
+    public AccountUser(String username, String password, boolean enabled, Collection<? extends GrantedAuthority> authorities) {
+        this(username, password, enabled, true, true, true, authorities);
     }
 
-    public AccountUser(Long userId, String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+    public AccountUser(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         Assert.isTrue(username != null && !username.isEmpty() && password != null, "Cannot pass null or empty values to constructor");
-        this.userId = userId;
         this.username = username;
         this.password = password;
         this.enabled = enabled;
@@ -37,7 +36,6 @@ public class AccountUser implements UserDetails {
         this.accountNonLocked = accountNonLocked;
         this.authorities = authorities;
     }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities;

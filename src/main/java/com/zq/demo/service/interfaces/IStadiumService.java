@@ -1,6 +1,6 @@
-package com.zq.demo.service.service.game;
+package com.zq.demo.service.interfaces;
 
-import com.zq.demo.pojo.game.Game;
+import com.zq.demo.pojo.Stadium;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author GL
  * @since 2024-02-09
  */
-public interface IGameService extends IService<Game> {
+public interface IStadiumService extends IService<Stadium> {
 
 }

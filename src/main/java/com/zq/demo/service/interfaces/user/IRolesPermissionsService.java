@@ -1,4 +1,4 @@
-package com.zq.demo.service.service.user;
+package com.zq.demo.service.interfaces.user;
 
 import com.zq.demo.pojo.user.RolesPermissions;
 import com.baomidou.mybatisplus.extension.service.IService;

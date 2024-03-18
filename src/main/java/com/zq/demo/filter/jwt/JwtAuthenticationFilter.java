@@ -57,11 +57,11 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
         String username = claim.getSubject();
         // 获取用户的权限等信息
 
-        User sysUser = userService.getByUsernameToAuth(username);
-
+        User sysUser = userService.getById(username);
 
         // 构建UsernamePasswordAuthenticationToken,这里密码为null，是因为提供了正确的JWT,实现自动登录
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, userDetailService.getUserAuthority(sysUser.getId()));
+        // 备注: 传入的sysUser.getUsername()是设置Authentication对象的principal属性
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(sysUser.getUsername(), null, userDetailService.getUserAuthority(sysUser.getId()));
         SecurityContextHolder.getContext().setAuthentication(token);
 
         chain.doFilter(request, response);

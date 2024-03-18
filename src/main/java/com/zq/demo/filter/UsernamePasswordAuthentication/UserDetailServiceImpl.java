@@ -33,13 +33,14 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (sysUser == null) {
             throw new UsernameNotFoundException("用户名或密码错误");
         }
-        return new AccountUser(sysUser.getId(), sysUser.getUsername(), sysUser.getPassword(), sysUser.getStatus().equals("1"), getUserAuthority(sysUser.getId()));
+        return new AccountUser(
+                ""+sysUser.getId(), sysUser.getPassword(), sysUser.getStatus().equals("1"), getUserAuthority(sysUser.getId()));
     }
 
     /**
      * 获取用户权限信息（角色、菜单权限）
      */
-    public List<GrantedAuthority> getUserAuthority(Long userId) {
+    public List<GrantedAuthority> getUserAuthority(Integer userId) {
         // 角色(比如ROLE_admin)，菜单操作权限(比如sys:user:list)
         // 比如ROLE_admin,ROLE_normal,sys:user:list,...
 

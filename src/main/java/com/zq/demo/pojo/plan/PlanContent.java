@@ -26,6 +26,8 @@ public class PlanContent implements Serializable {
     @TableId(value = "pc_id", type = IdType.ASSIGN_ID)
     private Integer pc_id;
 
+    private Integer pc_clone_id;
+
     private String pc_description;
 
     private String pc_type;

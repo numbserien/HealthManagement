@@ -6,7 +6,7 @@ import com.zq.demo.dao.user.PermissionsDao;
 import com.zq.demo.dao.user.RolesPermissionsDao;
 import com.zq.demo.pojo.user.Permissions;
 import com.zq.demo.pojo.user.RolesPermissions;
-import com.zq.demo.service.service.user.IRolesPermissionsService;
+import com.zq.demo.service.interfaces.user.IRolesPermissionsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

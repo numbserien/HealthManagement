@@ -6,7 +6,7 @@ import com.zq.demo.dao.user.RolesDao;
 import com.zq.demo.dao.user.UserRolesDao;
 import com.zq.demo.pojo.user.Roles;
 import com.zq.demo.pojo.user.UserRoles;
-import com.zq.demo.service.service.user.IUserRolesService;
+import com.zq.demo.service.interfaces.user.IUserRolesService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,7 +30,7 @@ public class UserRolesServiceImpl extends ServiceImpl<UserRolesDao, UserRoles> i
     private RolesDao rolesDao;
 
     // 根据userId查出roleId
-    public List<Long> getRolesIdListByUserId(Long userId) {
+    public List<Long> getRolesIdListByUserId(Integer userId) {
         LambdaQueryWrapper<UserRoles> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.select(UserRoles::getRoleId)
                 .eq(userId != null, UserRoles::getUserId, userId);
@@ -38,7 +38,7 @@ public class UserRolesServiceImpl extends ServiceImpl<UserRolesDao, UserRoles> i
     }
 
     // 根据userid查出roleName
-    public List<String> getRolesListByUserId(Long userId) {
+    public List<String> getRolesListByUserId(Integer userId) {
         List<Long> rolesIdList = getRolesIdListByUserId(userId);
         // 联立roleDao查找
         LambdaQueryWrapper<Roles> queryWrapperRole = new LambdaQueryWrapper<>();

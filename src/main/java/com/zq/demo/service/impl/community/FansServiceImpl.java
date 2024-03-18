@@ -2,7 +2,7 @@ package com.zq.demo.service.impl.community;
 
 import com.zq.demo.pojo.community.Fans;
 import com.zq.demo.dao.community.FansDao;
-import com.zq.demo.service.service.community.IFansService;
+import com.zq.demo.service.interfaces.community.IFansService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

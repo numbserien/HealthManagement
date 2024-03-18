@@ -2,7 +2,7 @@ package com.zq.demo.service.impl.school;
 
 import com.zq.demo.pojo.school.CampusMembership;
 import com.zq.demo.dao.school.CampusMembershipDao;
-import com.zq.demo.service.service.school.ICampusMembershipService;
+import com.zq.demo.service.interfaces.school.ICampusMembershipService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,7 @@ package com.zq.demo.service.impl.school;
 
 import com.zq.demo.pojo.school.Major;
 import com.zq.demo.dao.school.MajorDao;
-import com.zq.demo.service.service.school.IMajorService;
+import com.zq.demo.service.interfaces.school.IMajorService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

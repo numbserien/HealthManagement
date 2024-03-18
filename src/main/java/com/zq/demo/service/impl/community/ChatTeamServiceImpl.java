@@ -2,7 +2,7 @@ package com.zq.demo.service.impl.community;
 
 import com.zq.demo.pojo.community.ChatTeam;
 import com.zq.demo.dao.community.ChatTeamDao;
-import com.zq.demo.service.service.community.IChatTeamService;
+import com.zq.demo.service.interfaces.community.IChatTeamService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

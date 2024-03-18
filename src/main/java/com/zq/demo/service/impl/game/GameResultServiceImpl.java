@@ -2,7 +2,7 @@ package com.zq.demo.service.impl.game;
 
 import com.zq.demo.pojo.game.GameResult;
 import com.zq.demo.dao.game.GameResultDao;
-import com.zq.demo.service.service.game.IGameResultService;
+import com.zq.demo.service.interfaces.game.IGameResultService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

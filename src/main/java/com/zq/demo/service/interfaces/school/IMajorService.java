@@ -1,4 +1,4 @@
-package com.zq.demo.service.service.school;
+package com.zq.demo.service.interfaces.school;
 
 import com.zq.demo.pojo.school.Major;
 import com.baomidou.mybatisplus.extension.service.IService;
