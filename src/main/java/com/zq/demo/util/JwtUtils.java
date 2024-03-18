@@ -7,6 +7,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Data
@@ -43,7 +44,15 @@ public class JwtUtils {
             return null;
         }
     }
-
+//    从request中解析出用户id
+    public Integer getAuthId(HttpServletRequest request){
+        String jwt = String.valueOf(request.getHeader("Authorization"));
+        if (jwt!=null){
+            Claims claimsByToken = this.getClaimsByToken(jwt);
+            return new Integer(claimsByToken.getSubject());
+        }
+        return -1;
+    }
     // 判断JWT是否过期
     public boolean isTokenExpired(Claims claims) {
         return claims.getExpiration().before(new Date());
