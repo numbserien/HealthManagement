@@ -6,6 +6,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ResultCode {
+    //认证失败
+    AUTHERROR(40300,"权限不足，非本人操作"),
+
+    // 未找到资源
+    NOTFOUND(40400,"未找到资源"),
 
     //成功提示码
     SUCCESS(20000, "成功"),
