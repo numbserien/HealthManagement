@@ -50,9 +50,6 @@ public class TrainingPlan implements Serializable {
     // 是否公开 0不公开 1公开
     private Integer tp_type;
 
-    private Integer tp_completeness;
-
-    private Integer tp_likes;
     // 状态 0创建中 1创建完成 2审核中 3试用期 4允许上线
     private Integer tp_status;
 
