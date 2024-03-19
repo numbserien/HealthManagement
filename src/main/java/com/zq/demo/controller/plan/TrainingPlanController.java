@@ -1,6 +1,9 @@
 package com.zq.demo.controller.plan;
 
+//TODO 明日: 修改接口规范，查看RESTful风格
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zq.demo.pojo.plan.TrainingPlan;
 import com.zq.demo.pojo.sys.Result;
 import com.zq.demo.pojo.sys.ResultCode;
@@ -20,7 +23,7 @@ import java.util.Objects;
  * @since 2024-02-09
  */
 @RestController
-@RequestMapping("/user/trainingPlan")
+@RequestMapping("/user/trainingPlans")
 public class TrainingPlanController {
     @Autowired
     private TrainingPlanServiceImpl service;
@@ -41,19 +44,21 @@ public class TrainingPlanController {
             return Result.failure("新建失败，请重试！");
     }
 //    更新计划  ps:只允许本人操作
-//    TODO 按道理只允许修改计划名、执行天数、类型，并且判断计划项目是否为未上线状态，上线期间也不能更新
-    @PostMapping("/update")
+//    TODO 更新计划的名字和是否公开
+    @PutMapping("/")
     public Result updatePlan(@RequestBody TrainingPlan trainingPlan,HttpServletRequest request){
         Integer authId = jwtUtils.getAuthId(request);
-        if (!Objects.equals(authId, trainingPlan.getTp_u_id())){
-            return Result.failure(ResultCode.AUTHERROR);
-        }
-        service.updateById(trainingPlan);
-        return Result.success(trainingPlan);
+        Integer updateCount = service.updateByUser(trainingPlan,authId);
+        if (updateCount!=0){
+            return Result.success("共改变 "+updateCount+" 条数据");
+        }else
+            return Result.failure("修改失败，请重试");
     }
 //    更改计划的状态
-    @PostMapping("/{tp_id}/{status}")
-    public Result changeStatus(@PathVariable("tp_id") Integer tp_id, @PathVariable("status") Integer status, HttpServletRequest request){
+    @PatchMapping("/{tp_id}")
+    public Result changeStatus(@PathVariable("tp_id") Integer tp_id,
+                               @RequestParam("status") Integer status,
+                               HttpServletRequest request){
 //        动手者id
         Integer authId = jwtUtils.getAuthId(request);
 //      TODO 这里根据角色来做判断是否能操作改变状态
@@ -82,6 +87,18 @@ public class TrainingPlanController {
             return Result.failure("该训练计划未公开");
         }
         return Result.success(byId);
+    }
+    @GetMapping("/")
+    public Result getPlans(@RequestParam(value = "search",required = false) String search,
+                           @RequestParam(value = "page",required = false,defaultValue = "1") Integer page,
+                           @RequestParam(value = "count",required = false,defaultValue = "10") Integer count,
+                           @RequestParam(value = "orderItem",required = false) String orderItem,
+                           @RequestParam(value = "orderType",required = false) String orderType,
+                           HttpServletRequest request){
+        Integer authId = jwtUtils.getAuthId(request);
+//        TODO 考虑错误情况
+        IPage<TrainingPlan> IPage = service.search(page, count, search, orderItem, orderType, authId);
+        return Result.success(IPage);
     }
 }
 
