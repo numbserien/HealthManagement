@@ -29,25 +29,28 @@ public class TrainingPlanController {
     private TrainingPlanServiceImpl service;
     @Autowired
     private JwtUtils jwtUtils;
+    @Autowired
+    private HttpServletRequest request;
 //    初始化新计划书
     @PostMapping("/")
-    public Result makePlan(HttpServletRequest request, @RequestParam String name){
-        Integer creatorId = jwtUtils.getAuthId(request);
-//        应该不会存在无法解析jwt的情况
-//        if (creatorId==-1){
-//            return Result.failure("认证错误，请重新登录！");
-//        }
+    public Result makePlan( @RequestParam String name){
+        Long creatorId = jwtUtils.getAuthId(request);
         TrainingPlan trainingPlan = service.init(name,creatorId);
         if (trainingPlan!=null){
             return Result.success(trainingPlan);
         }else
             return Result.failure("新建失败，请重试！");
     }
+//    克隆计划书
+    @PostMapping("/clone")
+    public Result clonePlan(@RequestParam("tp_id") Integer CloneId){
+        // TODO 克隆方式
+        return Result.success("克隆接口还没写好");
+    }
 //    更新计划  ps:只允许本人操作
-//    TODO 更新计划的名字和是否公开
     @PutMapping("/")
-    public Result updatePlan(@RequestBody TrainingPlan trainingPlan,HttpServletRequest request){
-        Integer authId = jwtUtils.getAuthId(request);
+    public Result updatePlan(@RequestBody TrainingPlan trainingPlan){
+        Long authId = jwtUtils.getAuthId(request);
         Integer updateCount = service.updateByUser(trainingPlan,authId);
         if (updateCount!=0){
             return Result.success("共改变 "+updateCount+" 条数据");
@@ -56,11 +59,10 @@ public class TrainingPlanController {
     }
 //    更改计划的状态
     @PatchMapping("/{tp_id}")
-    public Result changeStatus(@PathVariable("tp_id") Integer tp_id,
-                               @RequestParam("status") Integer status,
-                               HttpServletRequest request){
+    public Result changeStatus(@PathVariable("tp_id") Long tp_id,
+                               @RequestParam("status") Integer status){
 //        动手者id
-        Integer authId = jwtUtils.getAuthId(request);
+        Long authId = jwtUtils.getAuthId(request);
 //      TODO 这里根据角色来做判断是否能操作改变状态
 
         Integer isSuccess = service.setStatus(tp_id, status);
@@ -73,14 +75,14 @@ public class TrainingPlanController {
 //    通过id寻找整个计划，包含内容信息 ps:非公开计划只能自己查看
 //    TODO 返回整个计划信息
     @GetMapping("/{tp_id}")
-    public Result getPlanById(@PathVariable("tp_id") Integer tp_id, HttpServletRequest request){
+    public Result getPlanById(@PathVariable("tp_id") Long tp_id){
         TrainingPlan byId = service.getById(tp_id);
         if (byId==null){
             return Result.failure(ResultCode.NOTFOUND);
         }
         if (byId.getTp_type()==0){
             // 私有项目
-            Integer authId = jwtUtils.getAuthId(request);
+            Long authId = jwtUtils.getAuthId(request);
             if (Objects.equals(byId.getTp_u_id(), authId)){
                 return Result.success(byId);
             }
@@ -89,15 +91,15 @@ public class TrainingPlanController {
         return Result.success(byId);
     }
     @GetMapping("/")
-    public Result getPlans(@RequestParam(value = "search",required = false) String search,
+    public Result getPlans(@RequestParam(value = "authorIds",required = false) Long[] authorIds,
+                           @RequestParam(value = "search",required = false) String search,
                            @RequestParam(value = "page",required = false,defaultValue = "1") Integer page,
                            @RequestParam(value = "count",required = false,defaultValue = "10") Integer count,
                            @RequestParam(value = "orderItem",required = false) String orderItem,
-                           @RequestParam(value = "orderType",required = false) String orderType,
-                           HttpServletRequest request){
-        Integer authId = jwtUtils.getAuthId(request);
+                           @RequestParam(value = "orderType",required = false) String orderType){
+        Long authId = jwtUtils.getAuthId(request);
 //        TODO 考虑错误情况
-        IPage<TrainingPlan> IPage = service.search(page, count, search, orderItem, orderType, authId);
+        IPage<TrainingPlan> IPage = service.search(page, count, search, orderItem, orderType, authId,authorIds);
         return Result.success(IPage);
     }
 }
