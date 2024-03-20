@@ -45,13 +45,13 @@ public class JwtUtils {
         }
     }
 //    从request中解析出用户id
-    public Integer getAuthId(HttpServletRequest request){
+    public Long getAuthId(HttpServletRequest request){
         String jwt = String.valueOf(request.getHeader("Authorization"));
         if (jwt!=null){
             Claims claimsByToken = this.getClaimsByToken(jwt);
-            return new Integer(claimsByToken.getSubject());
+            return new Long(claimsByToken.getSubject());
         }
-        return -1;
+        return -1L;
     }
     // 判断JWT是否过期
     public boolean isTokenExpired(Claims claims) {
