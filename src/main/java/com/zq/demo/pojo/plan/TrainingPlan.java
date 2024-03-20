@@ -34,15 +34,15 @@ public class TrainingPlan implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "tp_id", type = IdType.ASSIGN_ID)
-    private Integer tp_id;
+    private Long tp_id;
 
-    private Integer tp_clone_id;
+    private Long tp_clone_id;
 
     private String tp_name;
 
     private Integer tp_days;
 
-    private Integer tp_u_id;
+    private Long tp_u_id;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date tp_create_time;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
