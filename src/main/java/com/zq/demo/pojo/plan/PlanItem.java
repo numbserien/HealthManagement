@@ -22,15 +22,15 @@ import java.io.Serializable;
 public class PlanItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @TableId(value = "pi_id", type = IdType.ASSIGN_ID)
-    private Integer pi_id;
+    private Long pi_id;
 
     private Integer pi_order;
 
-    private Integer pi_tp_id;
+    private String pi_description;
 
-    private Integer pi_combo_day;
+    private Long pi_tp_id;
+    private Integer pi_combo_day=1;
 
 
 }
