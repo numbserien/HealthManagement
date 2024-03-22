@@ -29,9 +29,9 @@ public class TrainingPlanServiceImpl extends ServiceImpl<TrainingPlanDao, Traini
     @Resource
     private TrainingPlanDao planDao;
 //    创建初始化计划
-    public TrainingPlan init(String name,Long createId){
+    public TrainingPlan init(String name,Long creatorId){
         TrainingPlan trainingPlan = new TrainingPlan(name);
-        trainingPlan.setTp_u_id(createId);
+        trainingPlan.setTp_u_id(creatorId);
         this.planDao.insert(trainingPlan);
         return trainingPlan;
     }
@@ -86,5 +86,12 @@ public class TrainingPlanServiceImpl extends ServiceImpl<TrainingPlanDao, Traini
                 .set(trainingPlan.getTp_type()!=null,TrainingPlan::getTp_type,trainingPlan.getTp_type())
                 .set(TrainingPlan::getTp_update_time,new Date());
         return planDao.update(null,wrapper);
+    }
+//    判断该用户是否有权限编辑这个trainingPlan
+    public TrainingPlan selectByUIdAndTPId(Long u_id,Long tp_id){
+        LambdaQueryWrapper<TrainingPlan> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(TrainingPlan::getTp_id,tp_id)
+                .eq(TrainingPlan::getTp_u_id,u_id);
+        return planDao.selectOne(wrapper);
     }
 }
