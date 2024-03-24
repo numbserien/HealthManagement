@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.time.LocalTime;
 
 /**
@@ -24,16 +25,20 @@ public class DayPlan implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "dp_pi_id", type = IdType.ASSIGN_ID)
-    private Integer dp_pi_id;
+    @TableId(value = "dp_id", type = IdType.ASSIGN_ID)
+    private Long dp_id;
 
-    private Integer dp_pc_id;
+    private Long dp_pi_id;
 
-    private LocalTime dp_duration;
+    private Long dp_pc_id;
 
-    private LocalTime dp_start;
+    private Long dp_creator_id;
 
-    private LocalTime dp_deadline;
+    private Integer dp_duration;
+
+    private Time dp_start;
+
+    private Time dp_deadline;
 
 
 }
