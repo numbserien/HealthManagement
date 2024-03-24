@@ -24,6 +24,7 @@ public class PlanItem implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableId(value = "pi_id", type = IdType.ASSIGN_ID)
     private Long pi_id;
+    private Long pi_creator_id;
 
     private Integer pi_order;
 

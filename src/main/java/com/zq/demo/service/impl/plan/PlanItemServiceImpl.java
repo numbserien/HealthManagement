@@ -1,5 +1,6 @@
 package com.zq.demo.service.impl.plan;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zq.demo.pojo.plan.PlanItem;
 import com.zq.demo.dao.plan.PlanItemDao;
@@ -45,5 +46,12 @@ public class PlanItemServiceImpl extends ServiceImpl<PlanItemDao, PlanItem> impl
         wrapper.eq("pi_tp_id",tp_Id)
                 .orderByAsc("pi_order");
         return planItemDao.selectList(wrapper);
+    }
+//    判断计划项是否属于该用户
+    public boolean auth(Long pi_id,Long u_id){
+        LambdaQueryWrapper<PlanItem> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(PlanItem::getPi_id,pi_id)
+                .eq(PlanItem::getPi_creator_id,u_id);
+        return planItemDao.selectCount(wrapper)==1;
     }
 }

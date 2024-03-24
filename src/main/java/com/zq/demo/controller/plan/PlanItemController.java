@@ -40,6 +40,7 @@ public class PlanItemController {
         Long authId = jwtUtils.getAuthId(request);
         if (trainingPlanService.selectByUIdAndTPId(authId,planItem.getPi_tp_id())!=null){
             // 确认有权限
+            planItem.setPi_creator_id(authId);
             service.init(planItem);
             return Result.success(planItem);
         }else {
